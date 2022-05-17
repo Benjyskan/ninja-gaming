@@ -1,5 +1,6 @@
 <script context="module">
 	export async function load({ fetch, params }) {
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 		const id = params.id;
 		const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
 		const guide = await res.json();
@@ -13,8 +14,9 @@
 			};
 		}
 		return {
-			status: res.status,
-			error: new Error('Could not fetch the guide')
+			status: 301,
+			// error: new Error('Could not fetch the guide')
+			redirect: '/guides'
 		};
 	}
 </script>
