@@ -1,8 +1,6 @@
 <script>
-	import Title from '$lib/title.svelte';
 </script>
 
-<Title />
 <div class="index">
 	<h2>Title</h2>
 	<p>
