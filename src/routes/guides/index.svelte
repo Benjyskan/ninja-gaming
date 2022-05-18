@@ -1,7 +1,10 @@
-<script context="module">
-	export async function load({ fetch }) {
-		const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-		const guides = await res.json();
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+	import type { Guide } from 'src/types/types';
+
+	export const load: Load = async ({ fetch }) => {
+		const res = await fetch('/guides.json');
+		const { guides } = await res.json();
 		console.log(guides);
 
 		if (res.ok) {
@@ -15,11 +18,11 @@
 			status: res.status,
 			error: new Error('Could not fetch the guides')
 		};
-	}
+	};
 </script>
 
-<script>
-	export let guides;
+<script lang="ts">
+	export let guides: Guide[];
 </script>
 
 <div class="guides">
