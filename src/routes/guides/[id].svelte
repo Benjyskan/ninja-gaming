@@ -29,7 +29,9 @@
 
 <div class="guide">
 	<h2>{guide.title}</h2>
-	<p>{guide.body}</p>
+	{#if guide.body}
+		<p>{guide.body}</p>
+	{/if}
 </div>
 
 <style>
