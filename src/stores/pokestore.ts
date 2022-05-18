@@ -1,3 +1,4 @@
+// UNUSED
 import type { Pokemon, PokemonApiRes } from 'src/types/types'
 import { writable } from 'svelte/store'
 

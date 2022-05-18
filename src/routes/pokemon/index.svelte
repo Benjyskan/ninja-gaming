@@ -1,22 +1,40 @@
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+	export const load: Load = async ({ fetch }) => {
+		const url = `https://pokeapi.co/api/v2/pokemon?limit=150`;
+		const res = await fetch(url);
+		const data: PokemonApiRes = await res.json();
+		const pokemon = data.results.map<Pokemon>((data, index) => ({
+			name: data.name,
+			id: index + 1,
+			image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+				index + 1
+			}.png`
+		}));
+		return {
+			props: {
+				pokemon
+			}
+		};
+	};
+</script>
+
 <script lang="ts">
 	import PokemanCard from '$lib/pokemanCard.svelte';
-	import { pokemon } from '../../stores/pokestore';
-	// import { pokemon } from '$app/stores/pokestore';
-	$: {
-		console.log('$pokemon', $pokemon);
-	}
+	import type { Pokemon, PokemonApiRes } from 'src/types/types';
+	export let pokemon: Pokemon[];
 
 	let searchTerm = '';
-	let filteredPokemon = $pokemon;
+	let filteredPokemon = [...pokemon];
 
 	$: {
 		console.log(searchTerm);
 		if (searchTerm) {
-			filteredPokemon = $pokemon.filter((pokeman) =>
+			filteredPokemon = pokemon.filter((pokeman) =>
 				pokeman.name.toLocaleLowerCase().includes(searchTerm.toLowerCase())
 			);
 		} else {
-			filteredPokemon = [...$pokemon];
+			filteredPokemon = [...pokemon];
 		}
 	}
 </script>
