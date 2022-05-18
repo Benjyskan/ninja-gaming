@@ -4,9 +4,12 @@
 	// import '../../styles/global.css';
 </script>
 
+<svelte:head>
+	<title>Svelte Kit Pokedex</title>
+</svelte:head>
 <header>
 	<nav>
-		<Title title="Ninja Gaming Guides" />
+		<Title title="SvelteKit Crash Course - James Q Quick" />
 		<Navbar />
 	</nav>
 </header>

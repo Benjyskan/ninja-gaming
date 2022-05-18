@@ -7,7 +7,6 @@
 	<Title title="Ninja Gaming Guides" />
 </header>
 <main>
-	<!-- content -->
 	<slot />
 </main>
 <footer>
